@@ -1,20 +1,22 @@
+import java.util.*;
+
 public class TrainConsistent {
     public static void main(String[] args) {
 
-        System.out.println("=== UC18: Linear Search ===");
+        System.out.println("=== UC20: Safe Search ===");
 
-        String[] bogieIds = {"B1", "B2", "B3", "B4"};
-        String key = "B3";
+        List<String> bogies = new ArrayList<>(); // empty list
 
-        boolean found = false;
-
-        for (String id : bogieIds) {
-            if (id.equals(key)) {
-                found = true;
-                break;
+        try {
+            if (bogies.isEmpty()) {
+                throw new IllegalStateException("No bogies available for search!");
             }
-        }
 
-        System.out.println("Bogie Found: " + found);
+            // Search logic (won’t run if empty)
+            System.out.println("Searching...");
+
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
