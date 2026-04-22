@@ -1,21 +1,34 @@
-p
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrainConsistent{
+public class TrainConsistent {
 
     public static void main(String[] args) {
 
-        // Welcome message
         System.out.println("=== Train Consist Management App ===");
 
-        // Initialize train consist using ArrayList
-        List<String> trainConsist = new ArrayList<>();
+        // Create ArrayList for passenger bogies
+        List<String> passengerBogies = new ArrayList<>();
 
-        // Display initial bogie count
-        System.out.println("Initial bogie count: " + trainConsist.size());
+        // Add bogies
+        passengerBogies.add("Sleeper");
+        passengerBogies.add("AC Chair");
+        passengerBogies.add("First Class");
 
-        // Program continues...
-        System.out.println("System ready for further operations.");
+        // Display bogies after insertion
+        System.out.println("Bogies after addition: " + passengerBogies);
+
+        // Remove a bogie
+        passengerBogies.remove("AC Chair");
+
+        // Check existence
+        boolean exists = passengerBogies.contains("Sleeper");
+        System.out.println("Does Sleeper exist? " + exists);
+
+        // Final state of bogies
+        System.out.println("Final bogie list: " + passengerBogies);
+
+        System.out.println("Program continues...");
     }
 }
