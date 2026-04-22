@@ -1,35 +1,34 @@
-import java.util.*;
-import java.util.stream.Collectors;
-
 public class TrainConsistent {
+
+    static class InvalidCapacityException extends Exception {
+        InvalidCapacityException(String message) {
+            super(message);
+        }
+    }
+
+    static class Bogie {
+        String name;
+        int capacity;
+
+        Bogie(String name, int capacity) throws InvalidCapacityException {
+            if (capacity <= 0) {
+                throw new InvalidCapacityException("Invalid Capacity!");
+            }
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
+
     public static void main(String[] args) {
 
-        System.out.println("=== UC13: Performance Comparison ===");
+        System.out.println("=== UC14: Capacity Validation ===");
 
-        List<Integer> data = new ArrayList<>();
+        try {
+            Bogie b1 = new Bogie("Sleeper", 72);
+            Bogie b2 = new Bogie("Invalid", -10); // will throw
 
-        for (int i = 0; i < 100000; i++) {
-            data.add(i);
+        } catch (InvalidCapacityException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-
-        // Loop timing
-        long start1 = System.nanoTime();
-        List<Integer> result1 = new ArrayList<>();
-        for (int i : data) {
-            if (i > 50000) {
-                result1.add(i);
-            }
-        }
-        long end1 = System.nanoTime();
-
-        // Stream timing
-        long start2 = System.nanoTime();
-        List<Integer> result2 = data.stream()
-                .filter(i -> i > 50000)
-                .collect(Collectors.toList());
-        long end2 = System.nanoTime();
-
-        System.out.println("Loop Time: " + (end1 - start1));
-        System.out.println("Stream Time: " + (end2 - start2));
     }
 }
