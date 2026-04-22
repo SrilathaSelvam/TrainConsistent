@@ -1,32 +1,35 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TrainConsistent {
-
-    static class GoodsBogie {
-        String type;
-        String cargo;
-
-        GoodsBogie(String type, String cargo) {
-            this.type = type;
-            this.cargo = cargo;
-        }
-    }
-
     public static void main(String[] args) {
 
-        System.out.println("=== UC12: Safety Compliance ===");
+        System.out.println("=== UC13: Performance Comparison ===");
 
-        List<GoodsBogie> bogies = new ArrayList<>();
+        List<Integer> data = new ArrayList<>();
 
-        bogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
-        bogies.add(new GoodsBogie("Box", "Grain"));
+        for (int i = 0; i < 100000; i++) {
+            data.add(i);
+        }
 
-        boolean isSafe = bogies.stream()
-                .allMatch(b ->
-                        (!b.type.equals("Cylindrical")) ||
-                                b.cargo.equals("Petroleum")
-                );
+        // Loop timing
+        long start1 = System.nanoTime();
+        List<Integer> result1 = new ArrayList<>();
+        for (int i : data) {
+            if (i > 50000) {
+                result1.add(i);
+            }
+        }
+        long end1 = System.nanoTime();
 
-        System.out.println("Train Safety Status: " + isSafe);
+        // Stream timing
+        long start2 = System.nanoTime();
+        List<Integer> result2 = data.stream()
+                .filter(i -> i > 50000)
+                .collect(Collectors.toList());
+        long end2 = System.nanoTime();
+
+        System.out.println("Loop Time: " + (end1 - start1));
+        System.out.println("Stream Time: " + (end2 - start2));
     }
 }
