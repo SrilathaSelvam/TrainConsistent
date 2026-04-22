@@ -1,34 +1,28 @@
 public class TrainConsistent {
 
-    static class InvalidCapacityException extends Exception {
-        InvalidCapacityException(String message) {
-            super(message);
+    static class CargoSafetyException extends RuntimeException {
+        CargoSafetyException(String msg) {
+            super(msg);
         }
     }
 
-    static class Bogie {
-        String name;
-        int capacity;
-
-        Bogie(String name, int capacity) throws InvalidCapacityException {
-            if (capacity <= 0) {
-                throw new InvalidCapacityException("Invalid Capacity!");
-            }
-            this.name = name;
-            this.capacity = capacity;
+    static void assignCargo(String shape, String cargo) {
+        if (shape.equals("Rectangular") && cargo.equals("Petroleum")) {
+            throw new CargoSafetyException("Unsafe Cargo Assignment!");
         }
+        System.out.println("Cargo assigned successfully.");
     }
 
     public static void main(String[] args) {
 
-        System.out.println("=== UC14: Capacity Validation ===");
+        System.out.println("=== UC15: Safe Cargo Assignment ===");
 
         try {
-            Bogie b1 = new Bogie("Sleeper", 72);
-            Bogie b2 = new Bogie("Invalid", -10); // will throw
-
-        } catch (InvalidCapacityException e) {
+            assignCargo("Rectangular", "Petroleum");
+        } catch (CargoSafetyException e) {
             System.out.println("Error: " + e.getMessage());
+        } finally {
+            System.out.println("Operation completed.");
         }
     }
 }
