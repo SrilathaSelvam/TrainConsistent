@@ -1,14 +1,20 @@
-import java.util.Arrays;
-
 public class TrainConsistent {
     public static void main(String[] args) {
 
-        System.out.println("=== UC17: Arrays.sort() ===");
+        System.out.println("=== UC18: Linear Search ===");
 
-        String[] bogies = {"Sleeper", "AC", "First Class", "Cargo"};
+        String[] bogieIds = {"B1", "B2", "B3", "B4"};
+        String key = "B3";
 
-        Arrays.sort(bogies);
+        boolean found = false;
 
-        System.out.println("Sorted Bogies: " + Arrays.toString(bogies));
+        for (String id : bogieIds) {
+            if (id.equals(key)) {
+                found = true;
+                break;
+            }
+        }
+
+        System.out.println("Bogie Found: " + found);
     }
 }
