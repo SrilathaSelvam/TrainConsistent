@@ -19,18 +19,18 @@ public class TrainConsistent {
 
     public static void main(String[] args) {
 
-        System.out.println("=== UC8: Filter Bogies ===");
+        System.out.println("=== UC9: Group Bogies ===");
 
         List<Bogie> bogies = new ArrayList<>();
 
         bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("AC Chair", 60));
-        bogies.add(new Bogie("First Class", 40));
+        bogies.add(new Bogie("Sleeper", 60));
+        bogies.add(new Bogie("AC Chair", 40));
 
-        List<Bogie> filtered = bogies.stream()
-                .filter(b -> b.capacity > 60)
-                .collect(Collectors.toList());
+        Map<String, List<Bogie>> grouped =
+                bogies.stream()
+                        .collect(Collectors.groupingBy(b -> b.name));
 
-        System.out.println("Filtered Bogies: " + filtered);
+        System.out.println("Grouped Bogies: " + grouped);
     }
 }
