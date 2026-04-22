@@ -1,22 +1,18 @@
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
 public class TrainConsistent {
     public static void main(String[] args) {
 
-        System.out.println("=== UC4: Ordered Train ===");
+        System.out.println("=== UC5: Ordered Unique Bogies ===");
 
-        LinkedList<String> train = new LinkedList<>();
+        LinkedHashSet<String> formation = new LinkedHashSet<>();
 
-        train.add("Engine");
-        train.add("Sleeper");
-        train.add("AC");
-        train.add("Cargo");
-        train.add("Guard");
+        formation.add("Engine");
+        formation.add("Sleeper");
+        formation.add("Cargo");
+        formation.add("Guard");
+        formation.add("Sleeper"); // duplicate
 
-        train.add(2, "Pantry");
-        train.removeFirst();
-        train.removeLast();
-
-        System.out.println("Final Train: " + train);
+        System.out.println("Train Formation: " + formation);
     }
 }
