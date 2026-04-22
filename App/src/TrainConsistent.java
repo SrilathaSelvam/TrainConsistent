@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class TrainConsistent {
 
@@ -11,26 +10,22 @@ public class TrainConsistent {
             this.name = name;
             this.capacity = capacity;
         }
-
-        public String toString() {
-            return name + "(" + capacity + ")";
-        }
     }
 
     public static void main(String[] args) {
 
-        System.out.println("=== UC9: Group Bogies ===");
+        System.out.println("=== UC10: Total Capacity ===");
 
         List<Bogie> bogies = new ArrayList<>();
 
         bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("Sleeper", 60));
-        bogies.add(new Bogie("AC Chair", 40));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 40));
 
-        Map<String, List<Bogie>> grouped =
-                bogies.stream()
-                        .collect(Collectors.groupingBy(b -> b.name));
+        int total = bogies.stream()
+                .map(b -> b.capacity)
+                .reduce(0, Integer::sum);
 
-        System.out.println("Grouped Bogies: " + grouped);
+        System.out.println("Total Capacity: " + total);
     }
 }
