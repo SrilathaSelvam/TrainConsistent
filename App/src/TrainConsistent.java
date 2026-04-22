@@ -1,22 +1,22 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
 
 public class TrainConsistent {
-
     public static void main(String[] args) {
 
-        System.out.println("=== UC3: Unique Bogie IDs using HashSet ===");
+        System.out.println("=== UC4: Ordered Train ===");
 
-        // Create HashSet
-        Set<String> bogieIds = new HashSet<>();
+        LinkedList<String> train = new LinkedList<>();
 
-        // Add bogie IDs (including duplicate)
-        bogieIds.add("B1");
-        bogieIds.add("B2");
-        bogieIds.add("B3");
-        bogieIds.add("B2"); // duplicate
+        train.add("Engine");
+        train.add("Sleeper");
+        train.add("AC");
+        train.add("Cargo");
+        train.add("Guard");
 
-        // Display unique bogies
-        System.out.println("Unique Bogie IDs: " + bogieIds);
+        train.add(2, "Pantry");
+        train.removeFirst();
+        train.removeLast();
+
+        System.out.println("Final Train: " + train);
     }
 }
